@@ -1,0 +1,4 @@
+﻿  Source.cpp
+C:\Users\User\source\repos\CStrings\CStrings\Source.cpp(27,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\User\source\repos\CStrings\CStrings\Source.cpp(168,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  CStrings.vcxproj -> C:\Users\User\source\repos\CStrings\Debug\CStrings.exe
