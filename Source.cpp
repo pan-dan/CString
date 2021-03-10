@@ -1,6 +1,8 @@
 #include <iostream>
+#include <ctype.h> //для проверки является ли строка числом
 #include <Windows.h>
 
+// в ctype есть команда isdigit, которая определяет является ли это значение числом
 using namespace std;
 using std::cout;
 using std::cin;
@@ -301,9 +303,10 @@ int bin_to_dec(char str[])
 
 bool is_hex_number(char str[])
 {
-	for (int i = 0; str[i]; i++)
+	for (int i = str[0] == '0' && str[1] == 'x' ? 2 : 0; str[i]; i++)
 	{
-		if (!(str[i] >= '0' && str[i] <= '9' /*&& str[i] != ' '*/) && !(str[i] >= 'A' && str[i] <= 'F') && !(str[i] >= 'a' && str[i] <= 'f')) return false;
+		if (!(str[i] >= '0' && str[i] <= '9') && !(str[i] >= 'A' && str[i] <= 'F') && !(str[i] >= 'a' && str[i] <= 'f') && str[i] != ' ') return false;
+		if (str[i] == ' ' && str[i + 1] == ' ') return false;
 	}
 	return true;
 
@@ -318,8 +321,20 @@ int hex_to_dec(char str[])
 	int weight = 1;
 	int digit;
 
+
 	char* buffer = new char[n + 1];
-	strcpy(buffer, str);
+	if (str[0] == '0' && (str[1] == 'x' || str[1] == 'X'))
+	{
+		for (int i = 0; str[i]; i++)
+		{
+			buffer[i] = str[i + 2];
+		}
+	}
+	else
+	{
+		strcpy(buffer, str);
+	}
+
 	remove_symbol(buffer, ' ');
 	n = StrLen(buffer);
 	
